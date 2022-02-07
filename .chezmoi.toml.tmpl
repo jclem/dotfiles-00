@@ -21,4 +21,6 @@
 {{ if $gpgkeyid -}}
 [data.gpg]
   keyid = {{ $gpgkeyid | quote }}
+{{ else }}
+[data.gpg] = {}
 {{ end -}}
