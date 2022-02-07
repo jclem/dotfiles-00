@@ -1,0 +1,35 @@
+[alias]
+	aa = add --all
+	cm = commit
+	co = checkout
+	df = diff
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit --
+	pl = ! fish -c 'git pull origin (current_branch)'
+	ps = push
+	pb = push --set-upstream origin HEAD
+	st = status
+[bash]
+	showDirtyState = true
+	showInformativeStatus = true
+	showUntrackedFiles = true
+	showUpstream = auto
+[commit]
+	gpgSign = true
+[credential]
+	helper = osxkeychain
+[diff]
+	mnemonicPrefix = true
+	renames = copies
+[include]
+	path = ~/.gitconfig_local
+[init]
+	defaultBranch = main
+[push]
+	default = upstream
+[rerere]
+	enabled = true
+[user]
+	email = j@jclem.me
+	name = Jonathan Clem
+[pull]
+	ff = only

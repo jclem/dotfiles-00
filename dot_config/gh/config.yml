@@ -1,0 +1,7 @@
+git_protocol: https
+aliases:
+    co: "!gh pr list | fzf --preview 'gh pr view {+1}' | cut -f1 | xargs gh pr checkout"
+    diff: "!gh pr list | fzf --preview 'gh pr view {+1}' | cut -f1 | xargs gh pr diff"
+    open: "!gh pr list | fzf --preview 'gh pr view {+1}' | cut -f1 | xargs gh pr view --comments"
+    view: "repo view -w"
+editor: code --wait
