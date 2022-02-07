@@ -1,0 +1,57 @@
+#!/usr/bin/env bash -x
+
+if test ! $(which brew); then
+  printf '\e[33mHomebrew not found. \e[0mInstalling Homebrew...\n'
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+else
+  printf 'Homebrew found. Continuing...\n'
+fi
+
+printf 'Installing Homebrew packages...\n'
+{{- if (eq .chezmoi.os "darwin") -}}
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "heroku/brew"
+
+brew "asdf"
+brew "bat"
+brew "coreutils"
+brew "curl"
+brew "exa"
+brew "fd"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "git-delta"
+brew "gpg2"
+brew "heroku"
+brew "hivemind"
+brew "htop"
+brew "httpie"
+brew "jq"
+brew "overmind"
+brew "pinentry-mac"
+brew "ripgrep"
+brew "sd"
+brew "socat"
+brew "watchexec"
+brew "wget"
+EOF
+{{- else if (eq .chezmoi.os "linux") -}}
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "heroku/brew"
+
+brew "asdf"
+brew "bat"
+brew "exa"
+brew "fd"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "httpie"
+brew "jq"
+brew "ripgrep"
+brew "sd"
+brew "watchexec"
+brew "wget"
+{{ end -}}
