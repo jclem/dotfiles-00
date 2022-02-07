@@ -8,7 +8,7 @@ else
 fi
 
 printf 'Installing Homebrew packages...\n'
-{{- if (eq .chezmoi.os "darwin") -}}
+{{ if (eq .chezmoi.os "darwin") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "heroku/brew"
 
@@ -37,7 +37,7 @@ brew "socat"
 brew "watchexec"
 brew "wget"
 EOF
-{{- else if (eq .chezmoi.os "linux") -}}
+{{ else if (eq .chezmoi.os "linux") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 tap "heroku/brew"
 
