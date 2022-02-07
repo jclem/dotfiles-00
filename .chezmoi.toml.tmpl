@@ -18,10 +18,9 @@
 [data.user]
   email = {{ $email | quote }}
 
-{{ if $gpgkeyid -}}
 [data.gpg]
+{{ if $gpgkeyid -}}
   keyid = {{ $gpgkeyid | quote }}
 {{ else }}
-[data]
-  gpg = {}
+  keyid = false
 {{ end -}}

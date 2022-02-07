@@ -29,8 +29,9 @@
 [rerere]
 	enabled = true
 [user]
-	email = {{ .user.email }}
+	email = {{ .user.email }}{{ if .gpg.keyid }}
 	signingKey = {{ .gpg.keyid }}
+	{{- end }}
 	name = Jonathan Clem
 [pull]
 	ff = only
