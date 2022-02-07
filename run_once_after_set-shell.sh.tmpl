@@ -1,6 +1,7 @@
 #!/usr/bin/env -S bash -x
 
 {{ if .codespaces -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 $(which fish) -c 'curl -sL https://git.io/fisher | source && fisher update'
 echo "$(which fish)" | sudo tee -a /etc/shells
 sudo chsh -s $(which fish) $(whoami)
