@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Brewfile hash: {{ include "dot_config/brew/Brewfile" | sha256sum }}
+
+set -e
+
+brew bundle --file=$XDG_CONFIG_HOME/brew/Brewfile
