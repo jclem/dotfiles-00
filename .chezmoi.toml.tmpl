@@ -1,8 +1,24 @@
-{{- $email := promptString "email" -}}
-{{- $gpgkeyid := promptString "gpg key ID" -}}
+{{ $codespaces := env "CODESPACES" | not | not -}}
+{{ $email := "" -}}
+{{ $gpgkeyid := "" -}}
+
+{{ if $codespaces -}}
+  {{ $email = "j@jclem.me" -}}
+{{ else -}}
+  {{ $email = promptString "email" -}}
+{{ end -}}
+
+{{ if not $codespaces -}}
+  {{ $gpgkeyid = promptString "gpg key ID" -}}
+{{ end -}}
+
+[data]
+  codespaces = {{ $codespaces }}
 
 [data.user]
   email = {{ $email | quote }}
 
+{{ if $gpgkeyid -}}
 [data.gpg]
   keyid = {{ $gpgkeyid | quote }}
+{{ end -}}
