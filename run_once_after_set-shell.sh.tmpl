@@ -1,0 +1,5 @@
+#!/usr/bin/env -S bash -x
+
+{{ if .codespaces -}}
+sudo chsh -s $(which fish) $(whoami)
+{{ end -}}
