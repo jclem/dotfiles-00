@@ -1110,7 +1110,7 @@
 	<key>TerminalMargin</key>
 	<integer>16</integer>
 	<key>TerminalVMargin</key>
-	<integer>8</integer>
+	<integer>16</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 </dict>
