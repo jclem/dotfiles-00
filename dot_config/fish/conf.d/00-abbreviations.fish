@@ -1,6 +1,7 @@
 # See: https://fishshell.com/docs/current/commands.html#abbr
 
 if status --is-interactive
+    abbr --add --global bs brew services
     abbr --add --global cz chezmoi
     abbr --add --global dc docker-compose
     abbr --add --global dk docker
