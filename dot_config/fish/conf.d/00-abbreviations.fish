@@ -8,6 +8,7 @@ if status --is-interactive
     abbr --add --global g git
     abbr --add --global hk heroku
     abbr --add --global ls exa
+    abbr --add --global s scaffold
     abbr --add --global tf terraform
     abbr --add --global v vercel
 end
