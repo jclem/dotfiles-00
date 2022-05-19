@@ -3,8 +3,5 @@
   "files.associations": {
     "*.sh.tmpl": "shellscript",
     "*.toml.tmpl": "toml"
-  },
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": true
   }
 }
