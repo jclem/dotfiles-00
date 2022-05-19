@@ -9,14 +9,17 @@ function scaffold
 
     if test $argv[1] = run
         scaffold_run $argv[2..]
+        return $status
     end
 
     if test $argv[1] = ls
         scaffold_ls $argv[2..]
+        return $status
     end
 
     if test $argv[1] = help
         scaffold_help $argv[2..]
+        return $status
     end
 end
 
@@ -62,16 +65,30 @@ function scaffold_run
         end
     end
 
+    set -l any_failure 0
+
     for scaffold in $argv
         if string match -q '*/' $scaffold
-            for scaffold in (eval "ls $SCAFFOLDS_DIR/$scaffold""**/run.sh")
-                __scaffold_run (__scaffold_name_from_run_path $scaffold) (set -q _flag_debug)
+            set -l scaffolds (eval "ls $SCAFFOLDS_DIR/$scaffold""**/run.sh")
+            for scaffold in $scaffolds
+                __scaffold_run (__scaffold_name_from_run_path $scaffold) $scaffolds
+
+                if test $status -ne 0
+                    set any_failure 1
+                end
             end
 
             continue
         end
 
-        __scaffold_run $scaffold $_flag_debug
+        __scaffold_run $scaffold $argv
+        if test $status -ne 0
+            set any_failure 1
+        end
+    end
+
+    if test $any_failure -eq 1
+        return 1
     end
 end
 
@@ -84,28 +101,40 @@ function __scaffold_run -S -a scaffold
     string repeat -n (string length $msg) -
     set_color normal
 
+    set -f exit_code
+
+    set -l tmpdir (mktemp -d)
+    set -l pipe "$tmpdir/indent"
+    mkfifo "$pipe"
+
+    # TODO: Sometimes the scaffold command redirects begin before this shell is started.
+    fish -c "sed 's/^/|  /' <$pipe" &
+    sleep 0.25
+    set_color -d grey
+
     if set -q _flag_debug
-        set -l tmpdir (mktemp -d)
-        set -l pipe "$tmpdir/indent"
-        set_color -d grey
-        mkfifo "$pipe"
-        echo '|'
-        fish -c "sed 's/^/|  /' <$pipe" &
-        bash -x "$run_path" 2>$pipe
+        bash -x "$run_path" >$pipe 2>&1
+        set exit_code $status
         wait
-        echo '|'
-        set_color normal
     else
-        "$run_path"
+        "$run_path" >$pipe 2>&1
+        set exit_code $status
     end
 
-    set_color green
-    echo "|  Scaffold $scaffold finished."
-
-    if ! test $scaffold = $argv[-1]
-        echo
-    end
     set_color normal
+
+    if test $exit_code -eq 0
+        set_color green
+        echo "|  Scaffold $scaffold succeeded."
+    else
+        set_color red
+        echo "|  Scaffold $scaffold failed."
+    end
+
+    echo
+    set_color normal
+
+    return $exit_code
 end
 
 function scaffold_ls
