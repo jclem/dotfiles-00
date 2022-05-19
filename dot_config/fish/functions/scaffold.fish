@@ -103,24 +103,14 @@ function __scaffold_run -S -a scaffold
 
     set -f exit_code
 
-    set -l tmpdir (mktemp -d)
-    set -l pipe "$tmpdir/indent"
-    mkfifo "$pipe"
-
-    # TODO: Sometimes the scaffold command redirects begin before this shell is started.
-    fish -c "sed 's/^/|  /' <$pipe" &
-    sleep 0.25
     set_color -d grey
-
     if set -q _flag_debug
-        bash -x "$run_path" >$pipe 2>&1
-        set exit_code $status
-        wait
+        bash -x "$run_path" 2>&1 | sed 's/^/|  /'
+        set exit_code $pipestatus[1]
     else
-        "$run_path" >$pipe 2>&1
-        set exit_code $status
+        "$run_path" 2>&1 | sed 's/^/|  /'
+        set exit_code $pipestatus[1]
     end
-
     set_color normal
 
     if test $exit_code -eq 0
