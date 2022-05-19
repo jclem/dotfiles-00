@@ -2,14 +2,11 @@
 
 set -e
 
+fish -c 'scaffold run vscode/common'
+
 tmp="$(mktemp)"
 
-if ! test -f ".vscode/settings.json"; then
-  echo "{}" > ".vscode/settings.json"
-fi
-
-jq '.["editor.formatOnSave"] = true
-  | .["editor.codeActionsOnSave"]["source.organizeImports"] = true' \
+jq '.["editor.codeActionsOnSave"]["source.organizeImports"] = true' \
   < ".vscode/settings.json" \
   > "$tmp"
 

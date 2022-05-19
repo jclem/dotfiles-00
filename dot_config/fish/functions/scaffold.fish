@@ -94,16 +94,15 @@ end
 
 function __scaffold_run -S -a scaffold
     set -l run_path (__scaffold_run_path $scaffold)
+    set_color normal
 
     set_color blue
-    set -l msg "Running scaffold $scaffold"
-    echo $msg
-    string repeat -n (string length $msg) -
+    echo "#  $scaffold"
     set_color normal
 
     set -f exit_code
 
-    set_color -d grey
+    set_color grey
     if set -q _flag_debug
         bash -x "$run_path" 2>&1 | sed 's/^/|  /'
         set exit_code $pipestatus[1]
@@ -115,14 +114,11 @@ function __scaffold_run -S -a scaffold
 
     if test $exit_code -eq 0
         set_color green
-        echo "|  Scaffold $scaffold succeeded."
+        echo "#  $scaffold OK"
     else
         set_color red
-        echo "|  Scaffold $scaffold failed."
+        echo "#  $scaffold FAIL"
     end
-
-    echo
-    set_color normal
 
     return $exit_code
 end
