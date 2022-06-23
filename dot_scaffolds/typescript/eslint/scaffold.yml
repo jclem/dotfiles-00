@@ -1,0 +1,11 @@
+name: typescript/eslint
+needs: [javascript/eslint]
+steps:
+  - cp: {from: config.yml, to: .eslintrc.yml}
+  - npm:
+      - '@typescript-eslint/parser'
+      - '@typescript-eslint/eslint-plugin'
+      - 'eslint-config-prettier'
+  - json:
+    source: package.json
+    set: {path: "scripts['check:lint']", to: 'eslint .'}
