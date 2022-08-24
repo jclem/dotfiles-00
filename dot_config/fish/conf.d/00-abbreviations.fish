@@ -2,7 +2,6 @@
 
 if status --is-interactive
     abbr --add --global bs brew services
-    abbr --add --global code code-insiders
     abbr --add --global cz chezmoi
     abbr --add --global dc docker-compose
     abbr --add --global dk docker
