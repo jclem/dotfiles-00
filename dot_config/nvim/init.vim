@@ -1,6 +1,20 @@
 call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'rose-pine/neovim', { 'as': 'rose-pine', 'tag': 'v1.*' }
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 call plug#end()
+
+lua require('rose-pine/main')
+
+function! ToggleDarkMode()
+  if &background == 'dark'
+    set background=light
+  else
+    set background=dark
+  endif
+endfunction
 
 set clipboard=unnamedplus
 set cursorline
@@ -26,9 +40,12 @@ vnoremap ; :
 nnoremap ; :
 nnoremap <silent> <leader>vv :!reload<cr> \| :source $MYVIMRC<cr>
 nnoremap <silent> <leader>vp :!reload<cr> \| :source $MYVIMRC<cr> \| :PlugInstall<cr>
-
-" Clear search term
 nnoremap <silent> <leader>/ :nohlsearch<cr>
+nnoremap <silent> <leader>dm :call ToggleDarkMode()<cr>
+
+" ### FZF
+nnoremap <silent> <leader>fd :Files<cr>
+nnoremap <silent> <leader>fs :Rg<cr>
 
 " ### Tabbing
 nnoremap <silent> <leader>tt :tabnew<cr>
