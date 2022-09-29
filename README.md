@@ -8,11 +8,11 @@ by [chezmoi](https://chezmoi.io).
 ### Install
 
 ```shell
-> sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply jclem
+sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply jclem
 ```
 
 ### Update
 
 ```shell
-> chezmoi update
+chezmoi update
 ```
