@@ -6,7 +6,6 @@ if status --is-interactive
     abbr --add --global dc docker-compose
     abbr --add --global dk docker
     abbr --add --global g git
-    abbr --add --global hk heroku
     abbr --add --global k konk
     abbr --add --global ls exa
     abbr --add --global s scaffold
