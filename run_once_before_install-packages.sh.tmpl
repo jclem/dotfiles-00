@@ -15,7 +15,6 @@ fi
 printf 'Installing Homebrew packages...\n'
 {{ if (eq .chezmoi.os "darwin") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "heroku/brew"
 tap "homebrew/cask-fonts"
 
 brew "asdf"
@@ -33,7 +32,6 @@ brew "git-delta"
 brew "glow"
 brew "gpg2"
 brew "graphviz"
-brew "heroku"
 brew "hivemind"
 brew "htop"
 brew "httpie"
@@ -56,8 +54,6 @@ cask "iterm2"
 EOF
 {{ else if (eq .chezmoi.os "linux") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
-tap "heroku/brew"
-
 brew "asdf"
 brew "bat"
 brew "difftastic"
