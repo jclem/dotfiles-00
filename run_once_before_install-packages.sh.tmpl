@@ -54,19 +54,12 @@ cask "iterm2"
 EOF
 {{ else if (eq .chezmoi.os "linux") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
-brew "asdf"
-brew "bat"
-brew "difftastic"
-brew "exa"
-brew "fd"
 brew "fish"
 brew "fzf"
 brew "gh"
 brew "httpie"
 brew "jq"
 brew "ripgrep"
-brew "sd"
-brew "watchexec"
 brew "wget"
 EOF
 {{ end -}}
