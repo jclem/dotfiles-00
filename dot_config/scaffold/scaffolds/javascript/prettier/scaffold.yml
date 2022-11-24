@@ -1,0 +1,18 @@
+needs: [javascript/init]
+touch:
+  - package.json
+  - package-lock.json
+  - .prettierrc.yml
+run: |
+  npm i -D prettier
+
+  cp "$(scaffold where)"/javascript/prettier/config.yml .prettierrc.yml
+
+  tmp="$(mktemp)"
+
+  jq '.scripts["check:format"] = "prettier --loglevel warn --check ." |
+      .scripts["fix:format"] = "prettier -l --write ."' \
+    < "package.json" \
+    > "$tmp"
+
+  cp "$tmp" "package.json"

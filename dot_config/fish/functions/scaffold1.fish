@@ -1,4 +1,4 @@
-function scaffold
+function scaffold1
     argparse -s h/help -- $argv
     or return
 

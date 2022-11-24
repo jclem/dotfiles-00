@@ -3,7 +3,6 @@ set -x EDITOR "code --wait"
 set -x ERL_AFLAGS "-kernel shell_history enabled -kernel shell_history_file_bytes 2097152"
 set -x GPG_TTY (tty)
 set -x XDG_CONFIG_HOME "$HOME/.config"
-set -x SCAFFOLDS_DIR "$HOME/.scaffolds"
 set -x __fish_git_prompt_showcolorhints true
 set -x __fish_git_prompt_use_informative_chars true
 set -x __fish_git_prompt_color brblack

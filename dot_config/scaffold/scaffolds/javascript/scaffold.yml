@@ -1,0 +1,4 @@
+needs:
+  - javascript/init
+  - javascript/prettier
+  - javascript/vscode

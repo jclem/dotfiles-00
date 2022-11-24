@@ -1,0 +1,3 @@
+needs:
+  - typescript/init
+  - typescript/eslint

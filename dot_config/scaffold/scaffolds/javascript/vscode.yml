@@ -1,0 +1,10 @@
+needs: [vscode/common]
+touch: [.vscode/settings.json]
+run: |
+  tmp="$(mktemp)"
+
+  jq '.["editor.codeActionsOnSave"]["source.organizeImports"] = true' \
+    < ".vscode/settings.json" \
+    > "$tmp"
+
+  cp "$tmp" ".vscode/settings.json"

@@ -1,0 +1,5 @@
+touch: [package.json]
+run: |
+  if ! test -f package.json; then
+    echo "{}" > package.json
+  fi

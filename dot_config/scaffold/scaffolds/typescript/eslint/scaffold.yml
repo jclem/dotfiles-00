@@ -1,0 +1,21 @@
+needs:
+  - typescript/init
+touch:
+  - package.json
+  - package-lock.json
+  - .eslintrc.yml
+run: |
+  cp "$(scaffold where)"/typescript/eslint/config.yml .eslintrc.yml
+
+  npm i -D @typescript-eslint/parser \
+    @typescript-eslint/eslint-plugin \
+    eslint-config-prettier
+
+  tmp="$(mktemp)"
+
+  jq '.scripts["check:lint"] = "eslint ."' \
+    < "package.json" \
+    > "$tmp"
+
+  cp "$tmp" "package.json"
+

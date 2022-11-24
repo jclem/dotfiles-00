@@ -1,0 +1,18 @@
+needs:
+  - javascript/init
+touch:
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+run: |
+  npm i -D typescript
+
+  cp "$(scaffold where)"/typescript/init/config.json tsconfig.json
+
+  tmp="$(mktemp)"
+
+  jq '.scripts["check:build"] = "tsc --noEmit"' \
+    < "package.json" \
+    > "$tmp"
+
+  cp "$tmp" "package.json"
