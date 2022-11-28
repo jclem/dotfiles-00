@@ -1,7 +1,7 @@
 set -x fish_greeting
 fish_vi_key_bindings
 
-if [ (uname) != "Darwin" ]
+if [ (uname) != Darwin ]
     eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 
