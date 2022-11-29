@@ -1,7 +1,8 @@
 #!/usr/bin/env -S bash -x
 
 {{ if (eq .chezmoi.os "linux") }}
-set -gx HOMEBREW_INSTALL_FROM_API 1
+HOMEBREW_INSTALL_FROM_API=1
+export HOMEBREW_INSTALL_FROM_API
 {{ end }}
 
 if test ! $(which brew); then
