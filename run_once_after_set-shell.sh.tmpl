@@ -2,8 +2,14 @@
 
 {{ if .codespaces -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo "$(which fish)" | sudo tee -a /etc/shells
-sudo chsh -s $(which fish) $(whoami)
+
+if command -v sudo &>/dev/null; then
+  echo "$(which fish)" | sudo tee -a /etc/shells
+  sudo chsh -s $(which fish) $(whoami)
+else
+  echo "$(which fish)" | tee -a /etc/shells
+  chsh -s $(which fish) $(whoami)
+fi
 {{ end -}}
 
 # We need to set /dev/null as the `fisher update` input or it attempts to read
