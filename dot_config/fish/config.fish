@@ -6,12 +6,8 @@ if [ (uname) != Darwin ]
 end
 
 if type -q brew; and test -d (brew --prefix asdf)
-    if test -f (brew --prefix asdf)/share/fish/asdf.fish
-        source (brew --prefix asdf)/share/fish/asdf.fish
-    end
-
-    for file in (brew --prefix asdf)/share/fish/*.d/*.fish
-        source $file
+    if test -f (brew --prefix asdf)/libexec/asdf.fish
+        source (brew --prefix asdf)/libexec/asdf.fish
     end
 end
 
