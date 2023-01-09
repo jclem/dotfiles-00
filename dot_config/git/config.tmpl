@@ -14,13 +14,19 @@
 	showUntrackedFiles = true
 	showUpstream = auto
 [commit]
-	gpgSign = true
+	gpgsign = true
 [credential]
 	helper = osxkeychain
 [diff]
 	external = difft
 	mnemonicPrefix = true
 	renames = copies
+[gpg]
+	format = ssh
+{{ if (eq .chezmoi.os "darwin") }}
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{ end }}
 [include]
 	path = ~/.gitconfig_local
 [init]
@@ -32,9 +38,9 @@
 [rerere]
 	enabled = true
 [user]
+	name = {{ .user.name }}
 	email = {{ .user.email }}{{ if .gpg.keyid }}
 	signingKey = {{ .gpg.keyid }}
 	{{- end }}
-	name = Jonathan Clem
 [pull]
 	ff = only

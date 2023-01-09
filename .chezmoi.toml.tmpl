@@ -1,4 +1,5 @@
 {{ $codespaces := env "CODESPACES" | not | not -}}
+{{ $name := "" -}}
 {{ $email := "" -}}
 {{ $gpgkeyid := "" -}}
 
@@ -6,6 +7,12 @@
   {{ $email = "j@jclem.me" -}}
 {{ else -}}
   {{ $email = promptString "email" -}}
+{{ end -}}
+
+{{ if $codespaces -}}
+  {{ $name = "Jonathan Clem" -}}
+{{ else -}}
+  {{ $name = promptString "name" -}}
 {{ end -}}
 
 {{ if not $codespaces -}}
@@ -16,6 +23,7 @@
   codespaces = {{ $codespaces }}
 
 [data.user]
+  name = {{ $name | quote }}
   email = {{ $email | quote }}
 
 [data.gpg]
