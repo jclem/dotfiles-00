@@ -8,14 +8,14 @@
   {{ $personal_email = "j@jclem.me" -}}
   {{ $work_email = "jclem@github.com" -}}
 {{ else -}}
-  {{ $personal_email = promptString "personal email" -}}
-  {{ $work_email = promptString "work email" -}}
+  {{ $personal_email = promptString "personal email" "j@jclem.me" -}}
+  {{ $work_email = promptString "work email" "jclem@github.com" -}}
 {{ end -}}
 
 {{ if $codespaces -}}
   {{ $name = "Jonathan Clem" -}}
 {{ else -}}
-  {{ $name = promptString "name" -}}
+  {{ $name = promptString "name" "Jonathan Clem" -}}
 {{ end -}}
 
 {{ if not $codespaces -}}
@@ -31,7 +31,7 @@
   work_email = {{ $work_email | quote }}
 
 [data.gpg]
-{{ if $gpgkeyid -}}
+{{- if $gpgkeyid }}
   keyid = {{ $gpgkeyid | quote }}
 {{ else }}
   keyid = false
