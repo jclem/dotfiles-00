@@ -6,7 +6,13 @@ if [ (uname) != Darwin ]
 end
 
 if type -q brew; and test -d (brew --prefix asdf)
-    source (brew --prefix asdf)/asdf.fish
+    if test -f (brew --prefix asdf)/share/fish/asdf.fish
+        source (brew --prefix asdf)/share/fish/asdf.fish
+    end
+
+    for file in (brew --prefix asdf)/share/fish/*.d/*.fish
+        source $file
+    end
 end
 
 if type -q fzf_configure_bindings
