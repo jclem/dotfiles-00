@@ -1,12 +1,15 @@
 {{ $codespaces := env "CODESPACES" | not | not -}}
 {{ $name := "" -}}
-{{ $email := "" -}}
+{{ $personal_email := "" -}}
+{{ $work_email := "" -}}
 {{ $gpgkeyid := "" -}}
 
 {{ if $codespaces -}}
-  {{ $email = "j@jclem.me" -}}
+  {{ $personal_email = "j@jclem.me" -}}
+  {{ $work_email = "jclem@github.com" -}}
 {{ else -}}
-  {{ $email = promptString "email" -}}
+  {{ $personal_email = promptString "personal email" -}}
+  {{ $work_email = promptString "work email" -}}
 {{ end -}}
 
 {{ if $codespaces -}}
@@ -24,7 +27,8 @@
 
 [data.user]
   name = {{ $name | quote }}
-  email = {{ $email | quote }}
+  personal_email = {{ $personal_email | quote }}
+  work_email = {{ $work_email | quote }}
 
 [data.gpg]
 {{ if $gpgkeyid -}}

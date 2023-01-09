@@ -39,8 +39,12 @@
 	enabled = true
 [user]
 	name = {{ .user.name }}
-	email = {{ .user.email }}{{ if .gpg.keyid }}
+	email = {{ .user.personal_email }}{{ if .gpg.keyid }}
 	signingKey = {{ .gpg.keyid }}
 	{{- end }}
 [pull]
 	ff = only
+{{ if (eq .chezmoi.os "darwin") }}
+[includeIf "gitdir:~/src/github.com/github/"]
+	path = "~/.config/git/github.config"
+{{ end }}
