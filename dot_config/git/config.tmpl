@@ -21,9 +21,9 @@
 	external = difft
 	mnemonicPrefix = true
 	renames = copies
+{{- if (eq .chezmoi.os "darwin") }}
 [gpg]
 	format = ssh
-{{- if (eq .chezmoi.os "darwin") }}
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 {{- end }}
