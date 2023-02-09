@@ -1,4 +1,4 @@
 function reload
-    chezmoi apply
+    chezmoi update
     exec fish
 end
