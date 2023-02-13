@@ -16,3 +16,8 @@ end
 if test -d "$HOME/.cargo/bin"
     set -x PATH $PATH "$HOME/.cargo/bin"
 end
+
+# Add python un-versioned binaries (pip vs pip3) to PATH
+if type -q brew && test -d (brew --prefix)/opt/python/libexec/bin
+    set -x PATH $PATH (brew --prefix)/opt/python/libexec/bin
+end
