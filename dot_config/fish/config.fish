@@ -14,3 +14,7 @@ end
 if type -q fzf_configure_bindings
     fzf_configure_bindings --directory=\cf --git_log=\cg --git_status=\cs
 end
+
+if test -f $XDG_CONFIG_HOME/op/plugins.sh
+    source $XDG_CONFIG_HOME/op/plugins.sh
+end
