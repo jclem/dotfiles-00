@@ -61,6 +61,7 @@ cask "1password/tap/1password-cli"
 EOF
 {{ else if (eq .chezmoi.os "linux") }}
 brew bundle --no-lock --file=/dev/stdin <<EOF
+brew "exa"
 brew "fish"
 brew "fzf"
 brew "gh"
