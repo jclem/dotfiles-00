@@ -1,5 +1,9 @@
 if test (uname) = Darwin
-    set -x PATH $PATH /opt/homebrew/bin "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+    set -x PATH \
+        $PATH \
+        /opt/homebrew/bin \
+        "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" \
+        "/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin"
 end
 
 if test (uname) = Linux
